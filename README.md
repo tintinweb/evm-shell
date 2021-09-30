@@ -4,77 +4,233 @@
 </sup><br/><br/>
 
 
-## Solidity Shell
+## EVM Shell
 
-An interactive Solidity shell with lightweight session recording.
+A hands-on interactive Ethereum Virtual Machine (EVM) repl/shell.
 
-[💾](https://www.npmjs.com/package/solidity-shell) `npm install solidity-shell` 
+[💾](https://www.npmjs.com/package/solidity-shell) `npm install evm-shell` 
 
 
 ```javascript
-⇒  solidity-shell
- 
-🚀 Entering interactive Solidity shell. '.help' and '.exit' are your friends.
- »  ℹ️  ganache-mgr: starting temp. ganache instance ...
- »
- »  uint a = 100
- »  uint b = 200
- »  a + b + 2 + uint8(50)
-352
- »  $_
-352
+🚀 Entering interactive EVM shell. 'help' is your friend. '[Tab]' for autocomplete.
+   → chainId:      1
+   → hardfork:     london
+   → address:      0xc0de00000000000000000000000000000000c0de
+   → value:        100
+   → gasLimit:     68719476735
+   → gasPrice:     0
+   → caller/origin:0xbabe00000000000000000000000000000000babe/0xbabe00000000000000000000000000000000babe
+
+🙌 Bugs/Feedback → github/@tintinweb 
+    → https://github.com/tintinweb/evm-shell/ | ConsenSys Diligence @ https://consensys.net/diligence/
+
+»  push 1
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 2
+[code    ]: 0x6001
+[gasUsed ]: 3
+[stack   ]: ["01"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
+»  push 0xfe
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 4
+[code    ]: 0x600160fe
+[gasUsed ]: 6
+[stack   ]: ["01","fe"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
+»  mul
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 5
+[code    ]: 0x600160fe02
+[gasUsed ]: 11
+[stack   ]: ["fe"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
 ```
 
 ### Hints
 
-* **Note**: Sessions can be saved and restored using the `.session` command. Your previous session is always stored and can be loaded via `.session load previous` (not safe when running concurrent shells).
 * **Note**: `.reset` completely removes all statements. `.undo` removes the last statement.
-* **Note**: See what's been generated under the hood? call `.dump`.
-* **Note**: Settings are saved on exit (not safe when running concurrent shells). call `config set <key> <value>` to change settings like ganache port, ganache autostart, etc.
-* **Note**: Solidity version is currently fixed to the `solc` package that comes with the shell. If there's interest we might change that to allow remote compiler versions.
-* **Note**: `$_` is a placeholder for the last known result. Feel free to use that placeholder in your scripts :)
-* **Note**: Special commands are dot-prefixed. Everything else is evaluated as Solidity code.
 
 ### Usage
 
+Meta-commands are `.`-prefixed.
+
 ```shell
- 🚀 Entering interactive Solidity shell. '.help' and '.exit' are your friends.
- »  ℹ️  ganache-mgr: starting temp. ganache instance ...
- »
- »   .help
+ »  help
 
-📚 Help:
-   -----
+  Commands:
 
- $_ is a placeholder holding the most recent evaluation result.
-
-
- General:
-    .help                                ... this help :)
-    .exit                                ... exit the shell
-
- Settings:
-    .config                              ... show settings
-            set <key> <value>            ... set setting
-            unset <key>                  ... unset setting
- Session:
-    .session                             ... list sessions
-            load <id>                    ... load session
-            save <id>                    ... save session
-            
-    .undo                                ... undo last command
-    .reset                               ... reset cmd history. start from scratch.
-
- Debug::
-    .proc                                ... show processes managed by solidity-shell (ganache)
-    .dump                                ... show template contract
-    .echo                                ... every shell needs an echo command
-
-
-cheers 🙌 
-    @tintinweb 
-    ConsenSys Diligence @ https://consensys.net/diligence/
-    https://github.com/tintinweb/solidity-shell/ 
+    help [command...]         Provides help for a given command.
+    exit                      Exits application.
+    .show                     
+    .reset                    
+    .undo                     
+    .config                   
+    .opcodes                  
+    .step [step]              
+    .stack                    
+    .memory                   
+    .state                    
+    .storage                  
+    .logs                     
+    .disasm                   
+    .load <hexstr>            
+    stop [args...]            
+    add [args...]             
+    mul [args...]             
+    sub [args...]             
+    div [args...]             
+    sdiv [args...]            
+    mod [args...]             
+    smod [args...]            
+    addmod [args...]          
+    mulmod [args...]          
+    exp [args...]             
+    signextend [args...]      
+    lt [args...]              
+    gt [args...]              
+    slt [args...]             
+    sgt [args...]             
+    eq [args...]              
+    iszero [args...]          
+    and [args...]             
+    or [args...]              
+    xor [args...]             
+    not [args...]             
+    byte [args...]            
+    shl [args...]             
+    shr [args...]             
+    sar [args...]             
+    sha3 [args...]            
+    address [args...]         
+    balance [args...]         
+    origin [args...]          
+    caller [args...]          
+    callvalue [args...]       
+    calldataload [args...]    
+    calldatasize [args...]    
+    calldatacopy [args...]    
+    codesize [args...]        
+    codecopy [args...]        
+    gasprice [args...]        
+    extcodesize [args...]     
+    extcodecopy [args...]     
+    returndatasize [args...]  
+    returndatacopy [args...]  
+    extcodehash [args...]     
+    blockhash [args...]       
+    coinbase [args...]        
+    timestamp [args...]       
+    number [args...]          
+    difficulty [args...]      
+    gaslimit [args...]        
+    chainid [args...]         
+    selfbalance [args...]     
+    basefee [args...]         
+    pop [args...]             
+    mload [args...]           
+    mstore [args...]          
+    mstore8 [args...]         
+    sload [args...]           
+    sstore [args...]          
+    jump [args...]            
+    jumpi [args...]           
+    pc [args...]              
+    msize [args...]           
+    gas [args...]             
+    jumpdest [args...]        
+    push1 [args...]           
+    push2 [args...]           
+    push3 [args...]           
+    push4 [args...]           
+    push5 [args...]           
+    push6 [args...]           
+    push7 [args...]           
+    push8 [args...]           
+    push9 [args...]           
+    push10 [args...]          
+    push11 [args...]          
+    push12 [args...]          
+    push13 [args...]          
+    push14 [args...]          
+    push15 [args...]          
+    push16 [args...]          
+    push17 [args...]          
+    push18 [args...]          
+    push19 [args...]          
+    push20 [args...]          
+    push21 [args...]          
+    push22 [args...]          
+    push23 [args...]          
+    push24 [args...]          
+    push25 [args...]          
+    push26 [args...]          
+    push27 [args...]          
+    push28 [args...]          
+    push29 [args...]          
+    push30 [args...]          
+    push31 [args...]          
+    push32 [args...]          
+    dup1 [args...]            
+    dup2 [args...]            
+    dup3 [args...]            
+    dup4 [args...]            
+    dup5 [args...]            
+    dup6 [args...]            
+    dup7 [args...]            
+    dup8 [args...]            
+    dup9 [args...]            
+    dup10 [args...]           
+    dup11 [args...]           
+    dup12 [args...]           
+    dup13 [args...]           
+    dup14 [args...]           
+    dup15 [args...]           
+    dup16 [args...]           
+    swap1 [args...]           
+    swap2 [args...]           
+    swap3 [args...]           
+    swap4 [args...]           
+    swap5 [args...]           
+    swap6 [args...]           
+    swap7 [args...]           
+    swap8 [args...]           
+    swap9 [args...]           
+    swap10 [args...]          
+    swap11 [args...]          
+    swap12 [args...]          
+    swap13 [args...]          
+    swap14 [args...]          
+    swap15 [args...]          
+    swap16 [args...]          
+    log0 [args...]            
+    log1 [args...]            
+    log2 [args...]            
+    log3 [args...]            
+    log4 [args...]            
+    create [args...]          
+    call [args...]            
+    callcode [args...]        
+    return [args...]          
+    delegatecall [args...]    
+    create2 [args...]         
+    staticcall [args...]      
+    revert [args...]          
+    invalid [args...]         
+    selfdestruct [args...]    
+    push <args>   
 ```
 
 ## Examples 
@@ -83,70 +239,95 @@ cheers 🙌
 ![solidity-shell](https://user-images.githubusercontent.com/2865694/131328119-e363f20a-f627-43fc-8801-8d6613ad740f.gif)
 
 
-### Transaction vars: `msg.sender` etc.
+### Transaction vars: `msg.sender`, `tx.origin`, `this` etc.
 
 ```javascript
- »  msg.sender
-0x70e9B09abd6A13D2F5083CD5814076b77427199F
- »  address(uint160(address(msg.sender)))
-0x70e9B09abd6A13D2F5083CD5814076b77427199F
+»  caller
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 1
+[code    ]: 0x33
+[gasUsed ]: 2
+[stack   ]: ["babe00000000000000000000000000000000babe"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
+»  address
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 1
+[code    ]: 0x30
+[gasUsed ]: 2
+[stack   ]: ["c0de00000000000000000000000000000000c0de"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
 ```
 
-### Contracts, Structs, Functions
+### Memory manipulation
 
 ```javascript
-⇒  solidity-shell
- 
-🚀 Entering interactive Solidity shell. Type '.help' for help, '.exit' to exit.
- »  ℹ️  ganache-mgr: starting temp. ganache instance ...
- »
- »  contract TestContract {}
- »  new TestContract()
-0xFBC1B2e79D816E36a1E1e923dd6c6fad463F4368
- »  msg.sender
-0x363830C6aee2F0c43922bcB785C570a7cca613b5
- »  block.timestamp
-1630339581
- »  struct yolo {uint8 x; uint8 y;}
- »  function mytest(uint x) public pure returns(uint) {
-multi> return x -5;
-multi> }
- »  mytest(100)
-95
+»  push 0x1337
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 3
+[code    ]: 0x611337
+[gasUsed ]: 3
+[stack   ]: ["1337"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
+»  push 64
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 5
+[code    ]: 0x6113376040
+[gasUsed ]: 6
+[stack   ]: ["1337","40"] ↗
+[memory  ]:  ↗
+[storage ]: []
+[logs    ]: []
+
+»  mstore
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 6
+[code    ]: 0x611337604052
+[gasUsed ]: 18
+[stack   ]: [] ↗
+[memory  ]: 0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000001337 ↗
+[storage ]: []
+[logs    ]: []
+
+»  push 64
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 8
+[code    ]: 0x6113376040526040
+[gasUsed ]: 21
+[stack   ]: ["40"] ↗
+[memory  ]: 0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000001337 ↗
+[storage ]: []
+[logs    ]: []
+
+»  mload
+»  
+────────────────────────────────────────────────────────────────────────────
+[pc      ]: 9
+[code    ]: 0x611337604052604051
+[gasUsed ]: 24
+[stack   ]: ["1337"] ↗
+[memory  ]: 0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000001337 ↗
+[storage ]: []
+[logs    ]: []
 ```
 
-![solidity-shell2](https://user-images.githubusercontent.com/2865694/131328490-e211e89b-ac59-4729-972b-3e3b19b75cfc.gif)
-
-### Advanced usage
-
-```javascript
- »  struct yolo {uint8 x; uint8 y;}
- »  .dump
-// SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity ^0.8.7;
-
-contract TestContract {}
-
-struct yolo {uint8 x; uint8 y;}
-
-contract MainContract {
-
-    
-
-    function main() public  {
-        uint a = 100;
-        uint b = 200;
-        a + b + 2 + uint8(50);
-        new TestContract();
-        msg.sender;
-        block.timestamp;
-        return ;
-    }
-}
-```
 ____
-
-
-## Acknowledgements
-
-* Inspired by the great but unfortunately unmaintained [solidity-repl](https://github.com/raineorshine/solidity-repl).
