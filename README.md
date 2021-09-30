@@ -6,12 +6,14 @@
 
 ## EVM Shell
 
-A hands-on interactive Ethereum Virtual Machine (EVM) repl/shell.
+A hands-on interactive EVM repl/shell. Low-level ethereum contract code inspection.
 
 [💾](https://www.npmjs.com/package/solidity-shell) `npm install evm-shell` 
 
+In order to understand smart contracts you have to become a smart contract and `evm-shell` is your entrance to this rabbithole 🐰🕳️. Imagine, you are a smart contract starting deployed at address `0xc0de00000000000000000000000000000000c0de` and the account `0xbabe00000000000000000000000000000000babe` is calling you. What you are going to do is totally up to you! Decide, step-by-step, what  [instructions](https://ethervm.io/) to execute to reach your goal. Perform arithmetic operations, manipulate the stack, memory, storage, emit events, and much more. Your code, your rules.
 
 ```javascript
+⇒  evm-shell
 🚀 Entering interactive EVM shell. 'help' is your friend. '[Tab]' for autocomplete.
    → chainId:      1
    → hardfork:     london
@@ -62,10 +64,11 @@ A hands-on interactive Ethereum Virtual Machine (EVM) repl/shell.
 ### Hints
 
 * **Note**: `.reset` completely removes all statements. `.undo` removes the last statement.
+* **Note**: Automatically restores the state if you mess up because your instruction reverts 😉
 
 ### Usage
 
-Meta-commands are `.`-prefixed.
+Basically lists all supported evm instructions. Meta-commands are `dot`-prefixed.
 
 ```shell
  »  help
