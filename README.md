@@ -6,7 +6,7 @@
 
 ## EVM Shell
 
-A hands-on interactive EVM repl/shell. Low-level ethereum contract code inspection.
+A hands-on interactive EVM repl/shell. Low-level ethereum virtual machine inspection.
 
 [💾](https://www.npmjs.com/package/solidity-shell) `npm install evm-shell` 
 
@@ -63,6 +63,7 @@ In order to understand smart contracts you have to become a smart contract and `
 
 ### Hints
 
+* **Note**: This is **not a simulator**, we actually run your code in the amazing [ethereumjs](https://github.com/ethereumjs) vm.
 * **Note**: `.reset` completely removes all statements. `.undo` removes the last statement.
 * **Note**: Automatically restores the state if you mess up because your instruction reverts 😉
 
