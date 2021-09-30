@@ -10,7 +10,9 @@ A hands-on interactive EVM repl/shell. Low-level ethereum virtual machine inspec
 
 [💾](https://www.npmjs.com/package/solidity-shell) `npm install evm-shell` 
 
-In order to understand smart contracts you have to become a smart contract and `evm-shell` is your entrance to this rabbithole 🐰🕳️. Imagine, you are a smart contract starting deployed at address `0xc0de00000000000000000000000000000000c0de` and the account `0xbabe00000000000000000000000000000000babe` is calling you. What you are going to do is totally up to you! Decide, step-by-step, what  [instructions](https://ethervm.io/) to execute to reach your goal. Perform arithmetic operations, manipulate the stack, memory, storage, emit events, and much more. Your code, your rules.
+In order to understand smart contracts you have to become a smart contract. `evm-shell` is your entrance to this rabbithole 🐰🕳️. 
+
+Imagine, you wake up as a smart contract deployed at address `0xc0de00000000000000000000000000000000c0de`. Your friend at account `0xbabe00000000000000000000000000000000babe` is calling your contract code. You decide what to do, step-by-step, one [instruction](https://ethervm.io/) at a time. Perform arithmetic operations, manipulate the stack, memory, storage, emit events, and much more. Your code, your rules 👑.
 
 ```javascript
 ⇒  evm-shell
