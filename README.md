@@ -8,7 +8,7 @@
 
 A hands-on interactive EVM repl/shell. Low-level ethereum virtual machine inspection.
 
-[💾](https://www.npmjs.com/package/solidity-shell) `npm install evm-shell` 
+[💾](https://www.npmjs.com/package/solidity-shell) `npm install -g evm-shell` 
 
 In order to understand smart contracts you have to become a smart contract. `evm-shell` is your entrance to this rabbithole 🐰🕳️. 
 
