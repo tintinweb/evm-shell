@@ -244,10 +244,6 @@ Basically lists all supported evm instructions. Meta-commands are `dot`-prefixed
 
 ## Examples 
 
-
-![solidity-shell](https://user-images.githubusercontent.com/2865694/131328119-e363f20a-f627-43fc-8801-8d6613ad740f.gif)
-
-
 ### Transaction vars: `msg.sender`, `tx.origin`, `this` etc.
 
 ```javascript
