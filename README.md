@@ -14,6 +14,9 @@ In order to understand smart contracts you have to become a smart contract. `evm
 
 Imagine, you wake up as a smart contract deployed at address `0xc0de00000000000000000000000000000000c0de`. Your friend at account `0xbabe00000000000000000000000000000000babe` is calling your contract code. You decide what to do, step-by-step, one [instruction](https://ethervm.io/) at a time. Perform arithmetic operations, manipulate the stack, memory, storage, emit events, and much more. Your code, your rules 👑.
 
+
+![evm-shell](https://user-images.githubusercontent.com/2865694/135447272-12dd096f-8883-4c2d-871b-ed8102687033.gif)
+
 ```javascript
 ⇒  evm-shell
 🚀 Entering interactive EVM shell. 'help' is your friend. '[Tab]' for autocomplete.
